@@ -9,7 +9,7 @@ const app = express();
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "L@nnister456",
+  password: "@dvance_CRT_1",
   database: "advancecrt",
 });
 
@@ -45,13 +45,19 @@ let profilePic = "";
 */
 
 var sqlStudent =
-  "INSERT INTO AdvanceStudent (advanceStudentID, surname, firstName, gender, nationality, emailHEI, emailPersonal, auth, address1, address2, address3, address4, universityID, uniStudentID, timeBasis, cohort, startDate, endDate, regStatus, degreeType, degreeDuration, projectTitle, projectAbstract, registrationMonth, vivaDate, profilePic) VALUES (?)";
+  "INSERT INTO AdvanceStudent (advanceStudentID, surname, firstName, gender, nationality, emailHEI, emailPersonal, auth, address1, address2, address3, address4, universityID, uniStudentID, timeBasis, cohort, startDate, endDate, regStatus, degreeType, degreeDuration, projectTitle, projectAbstract, registrationMonth, vivaDate, profileImage, bio, isStudent, isSupervisor, isAdmin, isExec, isDirector) VALUES (?)";
 
 var sqlSupervisor =
-  "INSERT INTO AdvanceSupervisor (advanceSupervisorID, title, surname, firstName, gender, nationality, email, auth, universityID, department) VALUES (?)";
+  "INSERT INTO AdvanceSupervisor (advanceSupervisorID, title, surname, firstName, gender, nationality, email, auth, universityID, department, profileImage, bio, isStudent, isSupervisor, isAdmin, isExec, isDirector) VALUES (?)";
 
 var sqlSupervisorRelationship =
   "INSERT INTO SupervisorRelationship (advanceSupervisorID, advanceStudentID, relation) VALUES (?)";
+
+  var sqlPoster =
+  "INSERT INTO Poster (posterID, title, url, image, advanceStudentID) VALUES (?)";
+
+  var sqlNewsletter =
+  "INSERT INTO Newsletter (newsletterID, title, url, image, publicationDate) VALUES (?)";
 
 var sqlSearchStudent =
   "SELECT * FROM AdvanceStudent WHERE advanceStudentID LIKE (?)";
@@ -86,7 +92,14 @@ app.post("/addstudent", function (req, res) {
     req.body.projectAbstract,
     req.body.registrationMonth,
     req.body.vivaDate,
-    req.body.profilePic,
+    req.body.profileImage,
+    req.body.bio,
+    req.body.isStudent,
+    req.body.isSupervisor,
+    req.body.isAdmin,
+    req.body.isExec,
+    req.body.isDirector,
+
   ];
   console.log(req.body.surname);
   db.query(sqlStudent, [values], function (err, data) {
@@ -134,6 +147,14 @@ app.post("/addsupervisor", function (req, res) {
     req.body.auth,
     req.body.universityID,
     req.body.department,
+    req.body.profileImage,
+    req.body.bio,
+    req.body.isStudent,
+    req.body.isSupervisor,
+    req.body.isAdmin,
+    req.body.isExec,
+    req.body.isDirector,
+
   ];
   console.log(req.body.surname);
   db.query(sqlSupervisor, [values], function (err, data) {
@@ -160,6 +181,57 @@ app.post("/addsupervisorrelationship", function (req, res) {
   });
 });
 
+app.post("/addposter", function (req, res) {
+  const values = [
+    req.body.posterID,
+    req.body.title,
+    req.body.url,
+    req.body.image,
+    req.body.advanceStudentID
+  ];
+  db.query(sqlSupervisorRelationship, [values], function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+});
+
+app.post("/addposter", function (req, res) {
+  const values = [
+    req.body.posterID,
+    req.body.title,
+    req.body.url,
+    req.body.image,
+    req.body.advanceStudentID
+  ];
+  db.query(sqlPoster, [values], function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+});
+
+app.post("/addnewsletter", function (req, res) {
+  const values = [
+    req.body.newsletterID,
+    req.body.title,
+    req.body.url,
+    req.body.image,
+    req.body.publicationDate,
+  ];
+  db.query(sqlNewsletter, [values], function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+});
+
 app.get("/api", function (req, res) {
   console.log("called");
   res.send({ result: "Hello" });
@@ -167,6 +239,26 @@ app.get("/api", function (req, res) {
 
 app.get("/getsupervisors", (req, res) => {
   db.query("SELECT * FROM AdvanceSupervisor", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/getnewsletters", (req, res) => {
+  db.query("SELECT * FROM Newsletter", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/getposters", (req, res) => {
+  db.query("SELECT * FROM Poster", (err, result) => {
     if (err) {
       console.log(err);
     } else {

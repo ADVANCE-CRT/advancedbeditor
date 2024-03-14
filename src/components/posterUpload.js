@@ -42,8 +42,7 @@ const useStyles = makeStyles({
 
 export default function SupervisorUpload() {
   const [fileProgress, setFileProgress] = useState(0);
-  const [supervisors, setSupervisors] = useState([]);
-  const [countryList, setCountryList] = useState([]);
+  const [posters, setPosters] = useState([]);
 
   const navigate = useNavigate();
   const classes = useStyles();
@@ -53,7 +52,7 @@ export default function SupervisorUpload() {
     const reader = new FileReader();
     reader.onload = async (e) => {
       const data = e.target.result;
-      let supervisor = [];
+      let poster = [];
 
       let newLinebrk = data.split("\r\n");
       for (let i = 1; i < newLinebrk.length; i++) {
@@ -62,11 +61,11 @@ export default function SupervisorUpload() {
         for (let j = 0; j < newTabBreak.length; j++) {
           parsedata.push(newTabBreak[j]);
         }
-        supervisor.push(parsedata);
-        console.log(supervisor);
+        poster.push(parsedata);
+        console.log(poster);
       }
-      setSupervisors(supervisor);
-      console.log(supervisors);
+      setPosters(poster);
+      console.log(posters);
       //console.log("parsedData: ", student);
     };
     reader.readAsText(e.target[0].files[0]);
@@ -74,35 +73,20 @@ export default function SupervisorUpload() {
     // uploadFile(file);
   }
 
-  async function handleUploadSupervisorsClick(e) {
+  async function handleUploadPostersClick(e) {
     e.preventDefault();
-    console.log(supervisors);
+    console.log(posters);
 
-    for (var i = 0; i < supervisors.length - 1; i++) {
+    for (var i = 0; i < posters.length - 1; i++) {
       const uid = uuidv4().toString();
-      const uid2 = uuidv4().toString();
-      console.log(
-        "Supervisor " + i + "is " + supervisors[i][1] + " " + supervisors[i][0]
-      );
+
       axios
-        .post("http://localhost:5000/addsupervisor", {
-          advanceSupervisorID: uid,
-          title: supervisors[i][0],
-          surname: supervisors[i][1],
-          firstName: supervisors[i][2],
-          gender: supervisors[i][3],
-          nationality: supervisors[i][4],
-          email: supervisors[i][5],
-          auth: uid2,
-          universityID: supervisors[i][6],
-          department: supervisors[i][7],
-          profileImage: supervisors[i][8],
-          bio: supervisors[i][9],
-          isStudent: false,
-          isSupervisor: true,
-          isAdmin: false,
-          isExec: false,
-          isDirector: false,
+        .post("http://localhost:5000/addposter", {
+          posterID: uid,
+          title: posters[i][0],
+          url: posters[i][1],
+          image: posters[i][2],
+          advanceStudentID: posters[i][3],
         })
         .then(function (response) {
           console.log(response);
@@ -115,7 +99,7 @@ export default function SupervisorUpload() {
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h5">Upload supervisors</Typography>
+      <Typography variant="h5">Upload poster data</Typography>
       <Stack spacing={2}>
         <form onSubmit={uploadFileHandler}>
           <input type="file" className="input" />
@@ -125,10 +109,10 @@ export default function SupervisorUpload() {
 
         <Button
           variant="contained"
-          onClick={handleUploadSupervisorsClick}
+          onClick={handleUploadPostersClick}
           fullWidth
         >
-          Upload Supervisors
+          Upload Posters
         </Button>
         <Button variant="contained" fullWidth>
           Cancel

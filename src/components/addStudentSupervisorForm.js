@@ -47,7 +47,7 @@ export default function AddStudentSupervisorForm(props) {
   const [supervisorName, setSupervisorName] = useState("");
   const { studentId } = useParams();
   const [advanceSupervisorID, setAdvanceSupervisorID] = useState("");
-  const [relation, setRelation] = useState("Primary");
+  const [relation, setRelation] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
@@ -135,19 +135,19 @@ export default function AddStudentSupervisorForm(props) {
             onChange={(e) => setRelation(e.target.value)}
           >
             <FormControlLabel
-              value="Primary"
+              value={0}
               control={<Radio />}
               label="Primary"
               onChange={(e) => setRelation(e.target.value)}
             />
             <FormControlLabel
-              value="Co-Supervisor"
+              value={1}
               control={<Radio />}
               label="Co-Supervisor"
               onChange={(e) => setRelation(e.target.value)}
             />
             <FormControlLabel
-              value="Advisor"
+              value={2}
               control={<Radio />}
               label="Advisor"
               onChange={(e) => setRelation(e.target.value)}

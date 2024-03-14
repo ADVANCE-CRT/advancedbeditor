@@ -81,6 +81,14 @@ export default function StudentUpload() {
     for (var i = 0; i < students.length - 1; i++) {
       const uid = uuidv4().toString();
       const uid2 = uuidv4().toString();
+      const startDate = students[i][14]
+      const endDate = students[i][15]
+      const vivaDate = students[i][22]
+      const newStartDate = startDate.split("/").reverse().join("-")
+      const newEndDate = endDate.split("/").reverse().join("-")
+      const newVivaDate = vivaDate.split("/").reverse().join("-")
+
+
       console.log(
         "Student " + i + "is " + students[i][1] + " " + students[i][0]
       );
@@ -102,15 +110,24 @@ export default function StudentUpload() {
           uniStudentID: students[i][11],
           timeBasis: students[i][12],
           cohort: students[i][13],
-          startDate: students[i][14],
-          endDate: students[i][15],
+          startDate: newStartDate,
+          endDate: newEndDate,
           regStatus: students[i][16],
           degreeType: students[i][17],
           degreeDuration: students[i][18],
           projectTitle: students[i][19],
           projectAbstract: students[i][20],
           registrationMonth: students[i][21],
-          vivaDate: students[i][22],
+          vivaDate: newVivaDate,
+          profileImage: students[i][23],
+          bio: students[i][24],
+          isStudent: true,
+          isSupervisor: false,
+          isAdmin: false,
+          isExec: false,
+          isDirector: false,
+
+        
         })
         .then(function (response) {
           console.log(response);
