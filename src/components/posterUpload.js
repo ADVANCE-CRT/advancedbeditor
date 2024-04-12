@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 
 //need to fix validation
 
-export default function SupervisorUpload() {
+export default function PosterUpload() {
   const [fileProgress, setFileProgress] = useState(0);
   const [posters, setPosters] = useState([]);
 

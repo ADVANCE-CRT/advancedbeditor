@@ -98,6 +98,11 @@ export default function NavigationDrawer(title) {
       onClick: () => navigate("/supervisorupload"),
     },
     {
+      text: "Upload Posters",
+      icon: <SchoolIcon />,
+      onClick: () => navigate("/posterupload"),
+    },
+    {
       text: "Test",
       icon: <SchoolIcon />,
       onClick: () => navigate("/test"),

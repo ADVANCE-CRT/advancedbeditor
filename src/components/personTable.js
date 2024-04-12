@@ -28,6 +28,12 @@ export default function PersonTable(props) {
     //navigate(`/student/${e.target.value}`);
   }
 
+  async function handleStudentUpdateClick(e) {
+    console.log(e.target.value);
+    navigate(`/updatestudent/${e.target.value}`);
+    //navigate(`/student/${e.target.value}`);
+  }
+
   async function handleSuperVisorUpdateClick(e) {
     console.log(e.target.value);
     navigate(`/addstudentsupervisor/${e.target.value}`);
@@ -80,6 +86,14 @@ export default function PersonTable(props) {
                       onClick={(e) => handleSuperVisorUpdateClick(e)}
                     >
                       Update Supervisors
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      value={personList.advanceStudentID}
+                      onClick={(e) => handleStudentUpdateClick(e)}
+                    >
+                      Update Student
                     </Button>
                   </TableCell>
                 </TableRow>

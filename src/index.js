@@ -11,6 +11,8 @@ import StudentUploadPage from "./pages/studentUploadPage";
 import SupervisorUploadPage from "./pages/supervisorUploadPage";
 import StudentDetailsPage from "./pages/studentDetailsPage";
 import AddStudentSupervisorPage from "./pages/addStudentSupervisor";
+import PosterUploadPage from "./pages/posterUploadPage";
+import UpdateStudentPage from "./pages/updateStudentPage";
 //import { AuthProvider } from "./contexts/AuthContext";
 //import PrivateRoute from "./components/privateRoute";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
@@ -57,6 +59,8 @@ const App = () => {
           <Route exact path="/studentlist" element={<StudentListPage />} />
           <Route exact path="/addstudentpage" element={<AddStudentPage />} />
           <Route exact path="/studentupload" element={<StudentUploadPage />} />
+          <Route exact path="/posterupload" element={<PosterUploadPage />} />
+
           <Route
             exact
             path="/supervisorupload"
@@ -67,6 +71,11 @@ const App = () => {
             exact
             path="/student/:studentId"
             element={<StudentDetailsPage />}
+          />
+          <Route
+            exact
+            path="/updatestudent/:studentId"
+            element={<UpdateStudentPage />}
           />
           <Route
             exact
