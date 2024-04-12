@@ -99,9 +99,11 @@ export default function UpdateStudentForm(props) {
 
   useEffect(() => {
     const getCountries = () => {
-      axios.get("http://localhost:5000/getcountries").then((response) => {
-        setCountryList(response.data);
-      });
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getcountries")
+        .then((response) => {
+          setCountryList(response.data);
+        });
     };
 
     getCountries();
@@ -111,7 +113,7 @@ export default function UpdateStudentForm(props) {
     console.log(surname);
     e.preventDefault();
     axios
-      .post("http://localhost:5000/updatestudent", {
+      .post("https://advanceserver-45066d4d7734.herokuapp.com/updatestudent", {
         advanceStudentID: advanceStudentID,
         surname: surname,
         firstName: firstName,

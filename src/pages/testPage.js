@@ -25,7 +25,9 @@ const TestPage = () => {
   useEffect(() => {
     const getRelationships = () => {
       axios
-        .get("http://localhost:5000/getsupervisorrelationship")
+        .get(
+          "https://advanceserver-45066d4d7734.herokuapp.com/getsupervisorrelationship"
+        )
         .then((response) => {
           setRelationships(response.data);
         });

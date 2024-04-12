@@ -86,9 +86,11 @@ export default function AddStudentForm() {
 
   useEffect(() => {
     const getCountries = () => {
-      axios.get("http://localhost:5000/getcountries").then((response) => {
-        setCountryList(response.data);
-      });
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getcountries")
+        .then((response) => {
+          setCountryList(response.data);
+        });
     };
 
     getCountries();

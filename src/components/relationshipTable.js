@@ -37,7 +37,7 @@ export default function RelationshipTable(props) {
 */
     console.log(relationships);
     axios
-      .post("http://localhost:5000/searchstudent", {
+      .post("https://advanceserver-45066d4d7734.herokuapp.com/searchstudent", {
         advanceStudentID: relationships.advanceStudentID,
       })
       .then(function (response) {

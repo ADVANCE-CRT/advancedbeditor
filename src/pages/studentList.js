@@ -22,11 +22,13 @@ const StudentListPage = () => {
 
   useEffect(() => {
     const getStudents = () => {
-      console.log("here")
-      axios.get("http://localhost:5000/getstudents").then((response) => {
-        setStudentList(response.data);
-        console.log(response.data)
-      });
+      console.log("here");
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getstudents")
+        .then((response) => {
+          setStudentList(response.data);
+          console.log(response.data);
+        });
     };
     getStudents();
     console.log(studentList);

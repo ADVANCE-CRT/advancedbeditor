@@ -24,7 +24,7 @@ const StudentDetailsPage = () => {
   useEffect(() => {
     console.log(studentId);
     axios
-      .post("http://localhost:5000/searchstudent", {
+      .post("https://advanceserver-45066d4d7734.herokuapp.com/searchstudent", {
         advanceStudentID: studentId,
       })
       .then(function (response) {

@@ -23,9 +23,11 @@ const AddStudentPage = () => {
 
   useEffect(() => {
     const getStudents = () => {
-      axios.get("http://localhost:5000/getstudents").then((response) => {
-        setStudentList(response.data);
-      });
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getstudents")
+        .then((response) => {
+          setStudentList(response.data);
+        });
     };
     getStudents();
   }, []);

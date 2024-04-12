@@ -23,29 +23,33 @@ const HomePage = () => {
 
   useEffect(() => {
     const getCountries = () => {
-      axios.get("http://localhost:5000/getcountries").then((response) => {
-        setCountryList(response.data);
-      });
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getcountries")
+        .then((response) => {
+          setCountryList(response.data);
+        });
     };
 
     getCountries();
     const getSupervisors = () => {
-      axios.get("http://localhost:5000/getsupervisors").then((response) => {
-        setSupervisorList(response.data);
-        console.log(supervisorList);
-        for (var i = 0; i <= supervisorList.length - 1; i++) {
-          for (var j = 0; j <= countryList.length - 1; j++) {
-            if (
-              supervisorList[i].nationalityID === countryList.nationalityID[j]
-            ) {
-              console.log("success");
-              supervisorList[i].nationality = countryList.nationality;
-              console.log(supervisorList[i].nationality);
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getsupervisors")
+        .then((response) => {
+          setSupervisorList(response.data);
+          console.log(supervisorList);
+          for (var i = 0; i <= supervisorList.length - 1; i++) {
+            for (var j = 0; j <= countryList.length - 1; j++) {
+              if (
+                supervisorList[i].nationalityID === countryList.nationalityID[j]
+              ) {
+                console.log("success");
+                supervisorList[i].nationality = countryList.nationality;
+                console.log(supervisorList[i].nationality);
+              }
             }
           }
-        }
-        //setSupervisorList(supervisorList);
-      });
+          //setSupervisorList(supervisorList);
+        });
     };
     getSupervisors();
   }, []);

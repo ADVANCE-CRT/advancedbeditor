@@ -28,7 +28,7 @@ const AddStudentSupervisorPage = () => {
   useEffect(() => {
     console.log(studentId);
     axios
-      .post("http://localhost:5000/searchstudent", {
+      .post("https://advanceserver-45066d4d7734.herokuapp.com/searchstudent", {
         advanceStudentID: studentId,
       })
       .then(function (response) {
@@ -44,9 +44,11 @@ const AddStudentSupervisorPage = () => {
 
   useEffect(() => {
     const getSupervisors = () => {
-      axios.get("http://localhost:5000/getsupervisors").then((response) => {
-        setSupervisorList(response.data);
-      });
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getsupervisors")
+        .then((response) => {
+          setSupervisorList(response.data);
+        });
     };
     getSupervisors();
   }, []);

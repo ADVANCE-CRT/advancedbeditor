@@ -22,9 +22,11 @@ const SupervisorListPage = () => {
 
   useEffect(() => {
     const getSupervisors = () => {
-      axios.get("http://localhost:5000/getsupervisors").then((response) => {
-        setSupervisorList(response.data);
-      });
+      axios
+        .get("https://advanceserver-45066d4d7734.herokuapp.com/getsupervisors")
+        .then((response) => {
+          setSupervisorList(response.data);
+        });
     };
     getSupervisors();
   }, []);

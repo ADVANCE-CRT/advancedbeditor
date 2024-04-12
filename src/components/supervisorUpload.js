@@ -85,25 +85,28 @@ export default function SupervisorUpload() {
         "Supervisor " + i + "is " + supervisors[i][1] + " " + supervisors[i][0]
       );
       axios
-        .post("http://localhost:5000/addsupervisor", {
-          advanceSupervisorID: uid,
-          title: supervisors[i][0],
-          surname: supervisors[i][1],
-          firstName: supervisors[i][2],
-          gender: supervisors[i][3],
-          nationality: supervisors[i][4],
-          email: supervisors[i][5],
-          auth: uid2,
-          universityID: supervisors[i][6],
-          department: supervisors[i][7],
-          profileImage: supervisors[i][8],
-          bio: supervisors[i][9],
-          isStudent: false,
-          isSupervisor: true,
-          isAdmin: false,
-          isExec: false,
-          isDirector: false,
-        })
+        .post(
+          "https://advanceserver-45066d4d7734.herokuapp.com/addsupervisor",
+          {
+            advanceSupervisorID: uid,
+            title: supervisors[i][0],
+            surname: supervisors[i][1],
+            firstName: supervisors[i][2],
+            gender: supervisors[i][3],
+            nationality: supervisors[i][4],
+            email: supervisors[i][5],
+            auth: uid2,
+            universityID: supervisors[i][6],
+            department: supervisors[i][7],
+            profileImage: supervisors[i][8],
+            bio: supervisors[i][9],
+            isStudent: false,
+            isSupervisor: true,
+            isAdmin: false,
+            isExec: false,
+            isDirector: false,
+          }
+        )
         .then(function (response) {
           console.log(response);
         })

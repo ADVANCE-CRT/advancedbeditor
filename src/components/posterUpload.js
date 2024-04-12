@@ -81,7 +81,7 @@ export default function PosterUpload() {
       const uid = uuidv4().toString();
 
       axios
-        .post("http://localhost:5000/addposter", {
+        .post("https://advanceserver-45066d4d7734.herokuapp.com/addposter", {
           posterID: uid,
           title: posters[i][0],
           url: posters[i][1],

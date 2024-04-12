@@ -100,11 +100,14 @@ export default function AddStudentSupervisorForm(props) {
     console.log(relation);
 
     axios
-      .post("http://localhost:5000/addsupervisorrelationship", {
-        advanceStudentID: studentId,
-        advanceSupervisorID: supervisorID,
-        relation: relation,
-      })
+      .post(
+        "https://advanceserver-45066d4d7734.herokuapp.com/addsupervisorrelationship",
+        {
+          advanceStudentID: studentId,
+          advanceSupervisorID: supervisorID,
+          relation: relation,
+        }
+      )
       .then(function (response) {
         console.log(response);
       })
@@ -114,7 +117,9 @@ export default function AddStudentSupervisorForm(props) {
 
     const getStudentSupervisors = () => {
       axios
-        .get("http://localhost:5000/getsupervisorrelationship")
+        .get(
+          "https://advanceserver-45066d4d7734.herokuapp.com/getsupervisorrelationship"
+        )
         .then((response) => {
           console.log(response.data);
         });

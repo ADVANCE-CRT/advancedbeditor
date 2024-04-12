@@ -81,19 +81,18 @@ export default function StudentUpload() {
     for (var i = 0; i < students.length - 1; i++) {
       const uid = uuidv4().toString();
       const uid2 = uuidv4().toString();
-      const startDate = students[i][14]
-      const endDate = students[i][15]
-      const vivaDate = students[i][22]
-      const newStartDate = startDate.split("/").reverse().join("-")
-      const newEndDate = endDate.split("/").reverse().join("-")
-      const newVivaDate = vivaDate.split("/").reverse().join("-")
-
+      const startDate = students[i][14];
+      const endDate = students[i][15];
+      const vivaDate = students[i][22];
+      const newStartDate = startDate.split("/").reverse().join("-");
+      const newEndDate = endDate.split("/").reverse().join("-");
+      const newVivaDate = vivaDate.split("/").reverse().join("-");
 
       console.log(
         "Student " + i + "is " + students[i][1] + " " + students[i][0]
       );
       axios
-        .post("http://localhost:5000/addStudent", {
+        .post("https://advanceserver-45066d4d7734.herokuapp.com/addStudent", {
           advanceStudentID: uid,
           surname: students[i][0],
           firstName: students[i][1],
@@ -126,8 +125,6 @@ export default function StudentUpload() {
           isAdmin: false,
           isExec: false,
           isDirector: false,
-
-        
         })
         .then(function (response) {
           console.log(response);
